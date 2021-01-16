@@ -13,6 +13,16 @@ public abstract class Item {
     private int price;
     @Column(name = "part_number")
     private int part_number;
+    @Column(name = "img_url")
+    private String imgUrl;
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
 
     public int getId() {
         return id;

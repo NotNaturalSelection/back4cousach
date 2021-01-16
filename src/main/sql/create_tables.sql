@@ -14,7 +14,8 @@ create table if not exists displays
     resolution   varchar(10) not null,
     display_type varchar(10) not null,
     part_number  int         not null unique references shipments (part_number) on delete cascade,
-    price        int         not null
+    price        int         not null,
+    img_url text not null
 );
 
 create table if not exists customers
@@ -32,7 +33,8 @@ create table if not exists gpus
     memory_size_gb   int,
     form             varchar(10) not null,
     part_number      int         not null unique references shipments (part_number) on delete cascade,
-    price            int         not null
+    price            int         not null,
+    img_url text not null
 );
 
 create table if not exists ram
@@ -43,7 +45,8 @@ create table if not exists ram
     form        varchar(10) not null,
     speed_mhz   int         not null,
     part_number int         not null unique references shipments (part_number) on delete cascade,
-    price       int         not null
+    price       int         not null,
+    img_url text not null
 );
 
 create table if not exists drives
@@ -55,7 +58,8 @@ create table if not exists drives
     read_speed_gbs  int         not null,
     write_speed_gbs int         not null,
     part_number     int         not null unique references shipments (part_number) on delete cascade,
-    price           int         not null
+    price           int         not null,
+    img_url text not null
 );
 
 create table if not exists cpus
@@ -66,20 +70,23 @@ create table if not exists cpus
     core_speed_mhz    int         not null,
     core_number       int         not null,
     part_number       int         not null unique references shipments (part_number) on delete cascade,
-    price             int         not null
+    price             int         not null,
+    img_url text not null
 );
 
 create table if not exists bases
 (
     id           int primary key,
-    gpu_allowed  bool   not null,
+    gpu_allowed  bool        not null,
     display_id   int references displays,
     cpu_id       int references cpus,
-    drive_slots  int    not null,
-    ram_slots    int    not null,
-    part_number  int    not null unique references shipments (part_number) on delete cascade,
-    price        int    not null,
-    display_size float4 not null
+    drive_slots  int         not null,
+    ram_slots    int         not null,
+    part_number  int         not null unique references shipments (part_number) on delete cascade,
+    price        int         not null,
+    display_size float4      not null,
+    name         varchar(50) not null,
+    img_url text not null
 );
 
 create table if not exists builds

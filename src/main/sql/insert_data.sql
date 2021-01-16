@@ -12,25 +12,25 @@ insert into shipments
 values (127829, 100,'2020.12.01', '10 days' , 500);
 
 insert into displays
-values (1, 15.6, '1920x1080', 'IPS', 152523, 1000);
+values (1, 15.6, '1920x1080', 'IPS', 152523, 1000, 'https://www.macroget.com/cdn/2020/01/VIYxPtSq.jpg');
 
 insert into customers
 values (1, 'John', 'Doe');
 
 insert into gpus
-values (1, 1800, 9000, 8, 'PCIe x16', 285295, 20000);
+values (1, 1800, 9000, 8, 'PCIe x16', 285295, 20000, 'https://www.macroget.com/cdn/2020/01/VIYxPtSq.jpg');
 
 insert into ram
-values (1, 'DDR4', 8, 'SO-DIMM', 2400, 957286, 3000);
+values (1, 'DDR4', 8, 'SO-DIMM', 2400, 957286, 3000, 'https://www.macroget.com/cdn/2020/01/VIYxPtSq.jpg');
 
 insert into drives
-values (1, 'SATA 3.0', true, 512, 120, 50, 963741, 3000);
+values (1, 'SATA 3.0', true, 512, 120, 50, 963741, 3000, 'https://www.macroget.com/cdn/2020/01/VIYxPtSq.jpg');
 
 insert into cpus
-values (1, 'AMD Ryzen 5 3600', null, 3200, 8, 567249, 7000);
+values (1, 'AMD Ryzen 5 3600', null, 3200, 8, 567249, 7000, 'https://www.macroget.com/cdn/2020/01/VIYxPtSq.jpg');
 
 insert into bases
-values (1, true, 1, 1, 2, 2, 127829, 4000,15.6);
+values (1, true, 1, 1, 2, 2, 127829, 4000,15.6, 'XPS 15', 'https://www.macroget.com/cdn/2020/01/VIYxPtSq.jpg');
 
 insert into builds
 values (1, 1, 1, 1, 1, 1, 1);
