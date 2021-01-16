@@ -9,6 +9,6 @@ import code.entities.Shipment;
 
 @Repository
 public interface ShipmentRepository extends JpaRepository<Shipment, Integer> {
-    @Procedure("s265482.confirm_income")
+    @Procedure("s265482.parts_income")
     void confirmIncome(@Param("part_number") int part_number);
 }

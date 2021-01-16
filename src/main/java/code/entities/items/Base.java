@@ -21,6 +21,8 @@ public class Base extends Item {
     private int driveSlots;
     @Column(name = "ram_slots")
     private int ramSlots;
+    @Column(name = "name")
+    private String name;
 
     public boolean isGpuAllowed() {
         return gpuAllowed;
@@ -60,5 +62,13 @@ public class Base extends Item {
 
     public void setRamSlots(int ramSlots) {
         this.ramSlots = ramSlots;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
