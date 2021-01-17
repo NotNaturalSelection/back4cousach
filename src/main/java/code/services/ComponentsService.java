@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import code.entities.BaseWithMinPrice;
 import code.responseEntities.CompatibleComponents;
 import code.entities.Shipment;
 import code.repositories.BaseRepository;
@@ -47,7 +48,6 @@ public class ComponentsService {
                 .map(Shipment::getPartNumber)
                 .collect(Collectors.toList());
 
-
         result.setBase(baseRepository.findById(baseId));
 
         result.setCpus(cpuRepository.whereTdpLessThanAndInStock(result.getBase().getCpuMaxTdp(), inStockPartNumbers));
@@ -57,11 +57,16 @@ public class ComponentsService {
         result.setRam(ramRepository.findAllByFormInStock(result.getBase().getRamForm(), inStockPartNumbers));
         result.setDisplays(displayRepository.findAllBySizeInchesInStock(result.getBase().getDisplaySize(), inStockPartNumbers));
         result.setDrives(driveRepository.findInStock(inStockPartNumbers));
+        result.setBase(new BaseWithMinPrice(result.getBase(), countMinPrice(result)));
         return result;
     }
 
     public int findBaseMinPrice(int baseId) {
         CompatibleComponents cc = findCompatibleForBase(baseId);
+        return countMinPrice(cc);
+    }
+
+    public int countMinPrice(CompatibleComponents cc) {
         return
                 cc.getBase().getPrice()
                         + cc.getCpus().get(0).getPrice()
@@ -70,4 +75,6 @@ public class ComponentsService {
                         + cc.getDisplays().get(0).getPrice()
                         + cc.getRam().get(0).getPrice();
     }
+
+
 }
