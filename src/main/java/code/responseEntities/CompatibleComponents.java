@@ -1,4 +1,4 @@
-package code.entities;
+package code.responseEntities;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,8 +22,6 @@ public class CompatibleComponents {
     private List<Drive> drives = new ArrayList<>();
 
     private List<Display> displays = new ArrayList<>();
-
-//    private List<Integer> missingPartNumbers = new ArrayList<>();
 
     public Base getBase() {
         return base;
@@ -72,12 +70,4 @@ public class CompatibleComponents {
     public void setDisplays(List<Display> displays) {
         this.displays = displays;
     }
-
-//    public List<Integer> getMissingPartNumbers() {
-//        return missingPartNumbers;
-//    }
-//
-//    public void setMissingPartNumbers(List<Integer> missingPartNumbers) {
-//        this.missingPartNumbers = missingPartNumbers;
-//    }
 }

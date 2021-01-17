@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import code.entities.CompatibleComponents;
+import code.responseEntities.CompatibleComponents;
 import code.entities.Shipment;
 import code.repositories.BaseRepository;
 import code.repositories.CpuRepository;
@@ -51,10 +51,23 @@ public class ComponentsService {
         result.setBase(baseRepository.findById(baseId));
 
         result.setCpus(cpuRepository.whereTdpLessThanAndInStock(result.getBase().getCpuMaxTdp(), inStockPartNumbers));
-        result.setGpus(gpuRepository.wherePowerLessThanAndInStock(result.getBase().getGpuMaxPower(), inStockPartNumbers));
+        if (result.getBase().isGpuAllowed()) {
+            result.setGpus(gpuRepository.wherePowerLessThanAndInStock(result.getBase().getGpuMaxPower(), inStockPartNumbers));
+        }
         result.setRam(ramRepository.findAllByFormInStock(result.getBase().getRamForm(), inStockPartNumbers));
         result.setDisplays(displayRepository.findAllBySizeInchesInStock(result.getBase().getDisplaySize(), inStockPartNumbers));
         result.setDrives(driveRepository.findInStock(inStockPartNumbers));
         return result;
+    }
+
+    public int findBaseMinPrice(int baseId) {
+        CompatibleComponents cc = findCompatibleForBase(baseId);
+        return
+                cc.getBase().getPrice()
+                        + cc.getCpus().get(0).getPrice()
+                        + (cc.getGpus().isEmpty() ? 0 :cc.getGpus().get(0).getPrice())
+                        + cc.getDrives().get(0).getPrice()
+                        + cc.getDisplays().get(0).getPrice()
+                        + cc.getRam().get(0).getPrice();
     }
 }

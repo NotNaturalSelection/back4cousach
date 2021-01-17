@@ -11,7 +11,7 @@ import code.entities.items.Ram;
 
 @Repository
 public interface RamRepository extends JpaRepository<Ram, Integer> {
-    @Query("select c from Ram c where c.form=:form and c.part_number in :inStockPartNumbers")
+    @Query("select c from Ram c where c.form=:form and c.part_number in :inStockPartNumbers order by c.price")
     List<Ram> findAllByFormInStock(
             @Param("form")
                     String form,

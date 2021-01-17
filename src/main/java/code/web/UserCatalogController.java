@@ -1,15 +1,19 @@
 package code.web;
 
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import code.entities.CompatibleComponents;
+import code.entities.BaseWithMinPrice;
 import code.entities.items.Base;
 import code.entities.items.Cpu;
 import code.entities.items.Display;
@@ -22,8 +26,10 @@ import code.repositories.DisplayRepository;
 import code.repositories.DriveRepository;
 import code.repositories.GpuRepository;
 import code.repositories.RamRepository;
+import code.responseEntities.CompatibleComponents;
 import code.services.ComponentsService;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/catalog")
 public class UserCatalogController {
@@ -83,11 +89,16 @@ public class UserCatalogController {
     }
 
     @GetMapping(value = "/bases")
-    public Page<Base> getBases(
+    public Page<BaseWithMinPrice> getBases(
             @PageableDefault(page = 0, size = 10)
                     Pageable pageable
     ) {
-        return baseRepository.findAll(pageable);
+        Page<Base> bases = baseRepository.findAll(pageable);
+        return new PageImpl<>(bases
+                                      .getContent()
+                                      .stream()
+                                      .map(it -> new BaseWithMinPrice(it, componentsService.findBaseMinPrice(it.getId())))
+                                      .collect(Collectors.toList()));
     }
 
     @GetMapping(value = "/bases/{id}")

@@ -11,6 +11,7 @@ import code.entities.Shipment;
 import code.repositories.AgentsRepository;
 import code.repositories.ShipmentRepository;
 
+@CrossOrigin
 @RestController
 @RequestMapping(value = "/agent")
 public class AgentController {

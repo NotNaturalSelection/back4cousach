@@ -11,7 +11,7 @@ import code.entities.items.Display;
 
 @Repository
 public interface DisplayRepository extends JpaRepository<Display, Integer> {
-    @Query("select c from Display c where c.sizemInches=:sizemInches and c.part_number in :inStockPartNumbers")
+    @Query("select c from Display c where c.sizemInches=:sizemInches and c.part_number in :inStockPartNumbers order by c.price")
     List<Display> findAllBySizeInchesInStock(
             @Param("sizemInches")
                     int sizemInches,

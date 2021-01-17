@@ -11,6 +11,6 @@ import code.entities.items.Cpu;
 
 @Repository
 public interface CpuRepository extends JpaRepository<Cpu, Integer> {
-    @Query("select c from Cpu c where c.tdp <=:tdp and c.part_number in :inStockPartNumbers")
+    @Query("select c from Cpu c where c.tdp <=:tdp and c.part_number in :inStockPartNumbers order by c.price")
     List<Cpu> whereTdpLessThanAndInStock(@Param("tdp") int tdp, @Param("inStockPartNumbers") List<Integer> partNumbers);
 }

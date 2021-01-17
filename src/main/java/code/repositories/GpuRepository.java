@@ -11,7 +11,7 @@ import code.entities.items.Gpu;
 
 @Repository
 public interface GpuRepository extends JpaRepository<Gpu, Integer> {
-    @Query("select c from Gpu c where c.power <=:power and c.part_number  in :inStockPartNumbers")
+    @Query("select c from Gpu c where c.power <=:power and c.part_number  in :inStockPartNumbers order by c.price")
     List<Gpu> wherePowerLessThanAndInStock(
             @Param("power")
                     int power,

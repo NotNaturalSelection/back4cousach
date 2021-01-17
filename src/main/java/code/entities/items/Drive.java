@@ -13,6 +13,16 @@ public class Drive extends Item {
     private int readSpeedGBs;
     @Column(name = "write_speed_gbs")
     private int writeSpeedGBs;
+    @Column(name = "size_gb")
+    private int size;
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
 
     public boolean isSsd() {
         return isSsd;

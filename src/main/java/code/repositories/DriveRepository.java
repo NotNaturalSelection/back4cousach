@@ -12,7 +12,7 @@ import code.entities.items.Drive;
 
 @Repository
 public interface DriveRepository extends JpaRepository<Drive, Integer> {
-    @Query("select c from Drive c where c.part_number in :inStockPartNumbers")
+    @Query("select c from Drive c where c.part_number in :inStockPartNumbers order by c.isSsd desc , c.price asc")
     List<Drive> findInStock(
             @Param("inStockPartNumbers")
                     List<Integer> partNumbers

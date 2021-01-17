@@ -13,8 +13,6 @@ public abstract class Item {
     private int price;
     @Column(name = "part_number")
     private int part_number;
-    @Column(name = "img_url")
-    private String imgUrl;
     @Column(name = "name")
     private String name;
 
@@ -24,14 +22,6 @@ public abstract class Item {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getImgUrl() {
-        return imgUrl;
-    }
-
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
     }
 
     public int getId() {

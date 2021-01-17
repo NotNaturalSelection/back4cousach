@@ -2,8 +2,6 @@ package code.entities.items;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -23,6 +21,8 @@ public class Base extends Item {
     private int displaySize;
     @Column(name = "ram_form")
     private String ramForm;
+    @Column(name = "img_url")
+    private String imgUrl;
 
     public String getRamForm() {
         return ramForm;
@@ -78,5 +78,13 @@ public class Base extends Item {
 
     public void setRamSlots(int ramSlots) {
         this.ramSlots = ramSlots;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 }
