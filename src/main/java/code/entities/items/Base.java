@@ -11,18 +11,50 @@ import javax.persistence.Table;
 public class Base extends Item {
     @Column(name = "gpu_allowed")
     private boolean gpuAllowed;
-    @JoinColumn(name = "display_id", referencedColumnName = "id")
-    @OneToOne(targetEntity = Display.class)
-    private Display display;
-    @JoinColumn(name = "cpu_id", referencedColumnName = "id")
-    @OneToOne(targetEntity = Cpu.class)
-    private Cpu cpu;
     @Column(name = "drive_slots")
     private int driveSlots;
     @Column(name = "ram_slots")
     private int ramSlots;
-    @Column(name = "name")
-    private String name;
+    @Column(name = "cpu_max_tdp")
+    private int cpuMaxTdp;
+    @Column(name = "gpu_max_power")
+    private int gpuMaxPower;
+    @Column(name = "display_size")
+    private int displaySize;
+    @Column(name = "ram_form")
+    private String ramForm;
+
+    public String getRamForm() {
+        return ramForm;
+    }
+
+    public void setRamForm(String ramForm) {
+        this.ramForm = ramForm;
+    }
+
+    public int getDisplaySize() {
+        return displaySize;
+    }
+
+    public void setDisplaySize(int displaySize) {
+        this.displaySize = displaySize;
+    }
+
+    public int getCpuMaxTdp() {
+        return cpuMaxTdp;
+    }
+
+    public void setCpuMaxTdp(int cpuMaxTdp) {
+        this.cpuMaxTdp = cpuMaxTdp;
+    }
+
+    public int getGpuMaxPower() {
+        return gpuMaxPower;
+    }
+
+    public void setGpuMaxPower(int gpuMaxPower) {
+        this.gpuMaxPower = gpuMaxPower;
+    }
 
     public boolean isGpuAllowed() {
         return gpuAllowed;
@@ -30,22 +62,6 @@ public class Base extends Item {
 
     public void setGpuAllowed(boolean gpuAllowed) {
         this.gpuAllowed = gpuAllowed;
-    }
-
-    public Display getDisplay() {
-        return display;
-    }
-
-    public void setDisplay(Display display) {
-        this.display = display;
-    }
-
-    public Cpu getCpu() {
-        return cpu;
-    }
-
-    public void setCpu(Cpu cpu) {
-        this.cpu = cpu;
     }
 
     public int getDriveSlots() {
@@ -62,13 +78,5 @@ public class Base extends Item {
 
     public void setRamSlots(int ramSlots) {
         this.ramSlots = ramSlots;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 }

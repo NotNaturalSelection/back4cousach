@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 import code.entities.items.Base;
 
 @Repository
-public interface BaseRepository extends JpaRepository<Base, Integer> {}
+public interface BaseRepository extends JpaRepository<Base, Integer> {
+    Base  findById(int id);
+}

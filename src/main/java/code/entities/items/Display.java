@@ -7,19 +7,19 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "displays", schema = "s265482")
 public class Display extends Item {
-    @Column(name = "size_inches")
-    private double sizeInches;
+    @Column(name = "size_m_inches")
+    private int sizemInches;
     @Column(name = "resolution")
     private String resolution;
     @Column(name = "display_type")
     private String displayType;
 
-    public double getSizeInches() {
-        return sizeInches;
+    public int getSizemInches() {
+        return sizemInches;
     }
 
-    public void setSizeInches(double sizeInches) {
-        this.sizeInches = sizeInches;
+    public void setSizemInches(int sizeInches) {
+        this.sizemInches = sizeInches;
     }
 
     public String getResolution() {

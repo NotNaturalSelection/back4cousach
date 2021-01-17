@@ -13,8 +13,17 @@ public class Gpu extends Item {
     private int memorySpeedMHz;
     @Column(name = "memory_size_gb")
     private int memorySizeGB;
-    @Column(name = "form")
-    private String form;
+
+    @Column(name = "power")
+    private int power;
+
+    public int getPower() {
+        return power;
+    }
+
+    public void setPower(int power) {
+        this.power = power;
+    }
 
     public int getCoreSpeedMHz() {
         return coreSpeedMHz;
@@ -40,11 +49,4 @@ public class Gpu extends Item {
         this.memorySizeGB = memorySizeGB;
     }
 
-    public String getForm() {
-        return form;
-    }
-
-    public void setForm(String form) {
-        this.form = form;
-    }
 }

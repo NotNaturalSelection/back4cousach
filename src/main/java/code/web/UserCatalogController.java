@@ -5,9 +5,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import code.entities.CompatibleComponents;
 import code.entities.items.Base;
 import code.entities.items.Cpu;
 import code.entities.items.Display;
@@ -20,6 +22,7 @@ import code.repositories.DisplayRepository;
 import code.repositories.DriveRepository;
 import code.repositories.GpuRepository;
 import code.repositories.RamRepository;
+import code.services.ComponentsService;
 
 @RestController
 @RequestMapping("/catalog")
@@ -36,6 +39,8 @@ public class UserCatalogController {
     private DisplayRepository displayRepository;
     @Autowired
     private BaseRepository baseRepository;
+    @Autowired
+    private ComponentsService componentsService;
 
     @GetMapping(value = "/cpus")
     public Page<Cpu> getCpus(
@@ -84,4 +89,14 @@ public class UserCatalogController {
     ) {
         return baseRepository.findAll(pageable);
     }
+
+    @GetMapping(value = "/bases/{id}")
+    public CompatibleComponents getBase(
+            @PathVariable(name = "id")
+                    int id
+    ) {
+        return componentsService.findCompatibleForBase(id);
+    }
+
+
 }

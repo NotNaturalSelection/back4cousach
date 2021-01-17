@@ -10,9 +10,6 @@ import javax.persistence.Table;
 @Table(name = "cpus", schema = "s265482")
 public class Cpu extends Item {
 
-    @Column(name = "model")
-    private String model;
-
     @OneToOne(targetEntity = Gpu.class)
     @JoinColumn(name = "integrated_gpu_id", referencedColumnName = "id")
     private Gpu integratedGpu;
@@ -23,12 +20,15 @@ public class Cpu extends Item {
     @Column(name = "core_number")
     private int coreNumber;
 
-    public String getModel() {
-        return model;
+    @Column(name = "tdp")
+    private int tdp;
+
+    public int getTdp() {
+        return tdp;
     }
 
-    public void setModel(String model) {
-        this.model = model;
+    public void setTdp(int tdp) {
+        this.tdp = tdp;
     }
 
     public Gpu getIntegratedGpu() {

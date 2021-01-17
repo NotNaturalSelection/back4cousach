@@ -15,6 +15,16 @@ public abstract class Item {
     private int part_number;
     @Column(name = "img_url")
     private String imgUrl;
+    @Column(name = "name")
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getImgUrl() {
         return imgUrl;

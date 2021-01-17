@@ -21,16 +21,19 @@ public class AgentController {
     private AgentsRepository agentsRepository;
 
     private void validatePassword(int id, String md5)
-            throws IllegalAccessException {
-        Agent agent = agentsRepository.getOne(id);
+            throws AccessException {
+        Agent agent = agentsRepository.findById(id);
+        if (agent == null) {
+            throw new AccessException("User with id="+id+" does not exist");
+        }
         if (!agent.getMd5().equals(md5)) {
-            throw new IllegalAccessException("Wrong password for user with id="+id);
+            throw new AccessException("Wrong password for user with id="+id);
         }
     }
     @CrossOrigin
     @PostMapping("/login")
     public Agent login(int id, String md5)
-            throws IllegalAccessException {
+            throws AccessException {
         validatePassword(id, md5);
         return new Agent(id, md5);
     }
@@ -44,7 +47,7 @@ public class AgentController {
             @RequestParam
                     String md5
     )
-            throws IllegalAccessException {
+            throws AccessException {
         validatePassword(id, md5);
         return shipmentRepository.findAll(pageable);
     }
@@ -59,7 +62,7 @@ public class AgentController {
             @RequestParam
                     String md5
     )
-            throws IllegalAccessException {
+            throws AccessException {
         validatePassword(id, md5);
         shipmentRepository.confirmIncome(part_number);
     }
