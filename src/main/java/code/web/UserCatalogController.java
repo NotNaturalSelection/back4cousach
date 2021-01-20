@@ -8,10 +8,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import code.entities.BaseWithMinPrice;
 import code.entities.items.Base;
@@ -88,7 +85,7 @@ public class UserCatalogController {
         return displayRepository.findAll(pageable);
     }
 
-    @GetMapping(value = "/bases")
+    @GetMapping(value = "/base")
     public Page<BaseWithMinPrice> getBases(
             @PageableDefault(page = 0, size = 10)
                     Pageable pageable
@@ -101,7 +98,7 @@ public class UserCatalogController {
                                       .collect(Collectors.toList()));
     }
 
-    @GetMapping(value = "/bases/{id}")
+    @GetMapping(value = "/base/{id}")
     public CompatibleComponents getBase(
             @PathVariable(name = "id")
                     int id
